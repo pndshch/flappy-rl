@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#1a1d24">
+<title>Flappy RL — Training (Cross-Entropy Method)</title>
+<meta name="description" content="ブラウザ内で強化学習エージェントがFlappyを学習する様子を可視化。Cross-Entropy Methodで線形ポリシーを進化させる。">
+<link rel="stylesheet" href="train.css">
+</head>
+<body class="train-page">
+  <div id="train-stage">
+    <div id="train-game">
+      <canvas id="train-canvas" width="480" height="640"></canvas>
+      <div id="gen-banner">GEN 0 · WAITING</div>
+    </div>
+    <div id="train-panel">
+      <h1>Flappy RL <span class="small">Training</span></h1>
+      <p class="subtitle">Cross-Entropy Method · linear policy on 4 features + bias · 24 birds / generation share one set of pipes</p>
+      <div class="stats">
+        <div class="stat-row">
+          <div class="stat"><div class="label">GENERATION</div><div class="value" id="s-gen">0</div></div>
+          <div class="stat"><div class="label">BEST EVER</div><div class="value yellow" id="s-bestever">0</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="label">BEST THIS GEN</div><div class="value" id="s-best">0</div></div>
+          <div class="stat"><div class="label">AVG THIS GEN</div><div class="value" id="s-avg">0.0</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="label">ALIVE</div><div class="value" id="s-alive">0 / 24</div></div>
+          <div class="stat"><div class="label">EPISODES</div><div class="value" id="s-eps">0</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="label">ELAPSED</div><div class="value mono" id="s-time">0:00</div></div>
+          <div class="stat"><div class="label">FRAME</div><div class="value mono" id="s-frame">0</div></div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-label">
+          <span>score per generation</span>
+          <span class="legend">
+            <span><span class="swatch green"></span>avg</span>
+            <span><span class="swatch yellow"></span>best</span>
+          </span>
+        </div>
+        <canvas id="chart" width="416" height="120"></canvas>
+      </div>
+      <div class="buttons">
+        <button id="btn-start" class="btn primary">▶ Start Training</button>
+        <button id="btn-reset" class="btn">Reset</button>
+      </div>
+      <p class="note">all 24 birds share the same pipe sequence each generation, so one shared episode evaluates the whole population at once. CEM keeps the top 6 elites and resamples around their mean.</p>
+    </div>
+  </div>
+  <script src="train.js"></script>
+</body>
+</html>
