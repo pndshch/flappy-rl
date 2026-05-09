@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#74c0fc">
+<title>Flappy RL — Flappy Circle for Reinforcement Learning</title>
+<meta name="description" content="シンプルなFlappy Bird風ミニゲーム。ゲームロジックを描画から分離し、window.FlappyEnvからRLエージェントで操作できる。">
+<meta property="og:title" content="Flappy RL">
+<meta property="og:description" content="Browser Flappy with a clean RL interface (window.FlappyEnv).">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="480" height="640"></canvas>
+    <div id="rl-badge" title="RL agent can drive this env via window.FlappyEnv">window.FlappyEnv</div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
